@@ -9,16 +9,16 @@ I wanted to share a bit about how this project came together. Rather than just f
 
 I spent the first few hours researching the anatomy of modern phishing. To get it right, I actually spent time viewing a dataset of real-world malicious emails to understand exactly what was triggering the red flags in those specific cases.
 
-* **The Investigation:** By looking at actual malicious samples, I identified that the threat is rarely just a "virus" in a file; it\u2019s usually a clever mix of technical tricks and psychological pressure.
+* **The Investigation:** By looking at actual malicious samples, I identified that the threat is rarely just a "virus" in a file; it's usually a clever mix of technical tricks and psychological pressure.
 
-* **A "Wow" Moment:** One thing that really surprised me was seeing **XSS (Cross-Site Scripting)** payloads inside email headers. I\u2019ve seen XSS in web apps a thousand times, but I hadn't deeply considered it within the scope of an email client. It made me realize that the email itself is a vector for attacking the tool used to read it.
+* **A "Wow" Moment:** One thing that really surprised me was seeing **XSS (Cross-Site Scripting)** payloads inside email headers. I've seen XSS in web apps a thousand times, but I hadn't deeply considered it within the scope of an email client. It made me realize that the email itself is a vector for attacking the tool used to read it.
 * **Resilience:** I saw how malformed text encodings could be used to crash scanners, which led me to build a robust "fallback" system (UTF-8/Latin-1) for my engine to ensure it wouldn't break when encountering intentionally messy data.
 
 ## Architecture
 
 When it came time to build, I chose to split the work between a **Google Apps Script** frontend and a **Python (Flask)** backend.
 
-* **Learning the Stack:** This was my first time using Google Apps Script and Google Cloud. I\u2019m not a designer, and Apps Script involves a lot of frontend work, but once I "caught" the logic of how it renders cards, it was a satisfying, yet not exactly "fun".
+* **Learning the Stack:** This was my first time using Google Apps Script and Google Cloud. I'm not a designer, and Apps Script involves a lot of frontend work, but once I "caught" the logic of how it renders cards, it was a satisfying, yet not exactly "fun".
 * **Cloud Transition:** While Google Cloud was new to me, I found the logic wasn't much different from Azure or AWS, which made the deployment of the backend analysis engine quite smooth.
 
 
@@ -68,5 +68,5 @@ The backend performs a multi-layered heuristic scan to identify security red fla
 
 ## Final Thoughts
 
-I am incredibly proud of what I\u2019ve achieved with this project, both in the depth of the initial research and the quality of the final development. I learned a tremendous amount throughout this process\u2014from navigating the nuances of the Google Workspace ecosystem to hardening a backend against adversarial inputs. It was a great dive into the cat-and-mouse game of email security. It\u2019s fully set up and ready to run against a real Gmail account, and I\u2019m looking forward to walking you through the logic and the trade-offs I made along the way.
+I am incredibly proud of what I've achieved with this project, both in the depth of the initial research and the quality of the final development. I learned a tremendous amount throughout this process from navigating the nuances of the Google Workspace ecosystem to hardening a backend against adversarial inputs. It was a great dive into the cat-and-mouse game of email security. It's fully set up and ready to run against a real Gmail account, and I'm looking forward to walking you through the logic and the trade-offs I made along the way.
 
